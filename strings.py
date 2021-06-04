@@ -138,8 +138,8 @@ class MiyamotoTranslation:
             'AutoSaveDlg': {
                 0: 'Auto-saved backup found',
                 1: 'Miyamoto! has found some level data which wasn\'t saved - possibly due to a crash within the editor or by your computer. Do you want to restore this level?[br][br]If you pick No, the autosaved level data will be deleted and will no longer be accessible.[br][br]Original file path: [path]',
-                2: 'If you make good level, you quit.',
-                3: 'If you no make good level, you stay.',
+                2: 'There are unsaved changes.',
+                3: 'Do you wish to save your changes?',
                 },
             'BGDlg': {
                 0: 'Backgrounds',
