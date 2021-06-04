@@ -313,52 +313,8 @@ class ObjectItem(LevelEditorItem):
 
         self.RemoveFromSearchDatabase()
 
-        import quickpaint
-
-        quickpaint.QuickPaintOperations.object_search_database[self] = []
-        if self.width == 1 and self.height == 1:
-            if not quickpaint.QuickPaintOperations.object_search_database.get((self.objx, self.objy, self.layer)):
-                quickpaint.QuickPaintOperations.object_search_database[self.objx, self.objy, self.layer] = []
-
-            if self not in quickpaint.QuickPaintOperations.object_search_database[(self.objx, self.objy, self.layer)]:
-                quickpaint.QuickPaintOperations.object_search_database[(self.objx, self.objy, self.layer)].append(self)
-                quickpaint.QuickPaintOperations.object_search_database[self].append((self.objx, self.objy, self.layer))
-
-        elif self.objdata:
-            for row in self.objdata:
-                x = 0
-                for tile in row:
-                    if tile != -1:
-                        if not quickpaint.QuickPaintOperations.object_search_database.get(
-                                (self.objx + x, self.objy + y, self.layer)):
-                            quickpaint.QuickPaintOperations.object_search_database[
-                                self.objx + x, self.objy + y, self.layer] = []
-
-                        if self not in quickpaint.QuickPaintOperations.object_search_database[
-                            (self.objx + x, self.objy + y, self.layer)]:
-                            quickpaint.QuickPaintOperations.object_search_database[
-                                (self.objx + x, self.objy + y, self.layer)].append(self)
-                            quickpaint.QuickPaintOperations.object_search_database[self].append(
-                                (self.objx + x, self.objy + y, self.layer))
-
-                    x += 1
-
-                y += 1
-
-        del quickpaint
-
     def RemoveFromSearchDatabase(self):
-        import quickpaint
-
-        if self in quickpaint.QuickPaintOperations.object_search_database:
-            for t in quickpaint.QuickPaintOperations.object_search_database[self]:
-                if (quickpaint.QuickPaintOperations.object_search_database.get(t)
-                    and self in quickpaint.QuickPaintOperations.object_search_database[t]):
-                    quickpaint.QuickPaintOperations.object_search_database[t].remove(self)
-
-            del quickpaint.QuickPaintOperations.object_search_database[self]
-
-        del quickpaint
+        return
 
     def SetType(self, tileset, type):
         """

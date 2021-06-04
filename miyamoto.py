@@ -103,7 +103,6 @@ from level import *
 from loading import *
 from misc import *
 from puzzle import MainWindow as PuzzleWindow
-from quickpaint import *
 import SarcLib
 import spritelib as SLib
 import sprites
@@ -1047,20 +1046,6 @@ class MiyamotoWindow(QtWidgets.QMainWindow):
             if addedButtons:
                 self.toolbar.addSeparator()
 
-    def __QPPaintSet(self):
-        self.quickPaint.PaintModeCheck.setChecked(not self.quickPaint.PaintModeCheck.isChecked())
-        self.quickPaint.SetPaintMode()
-
-        if hasattr(QuickPaintOperations, 'prePaintedObjects'):
-            QuickPaintOperations.prePaintedObjects.clear()
-
-    def __QPEraseSet(self):
-        self.quickPaint.EraseModeCheck.setChecked(not self.quickPaint.EraseModeCheck.isChecked())
-        self.quickPaint.SetEraseMode()
-
-        if hasattr(QuickPaintOperations, 'prePaintedObjects'):
-            QuickPaintOperations.prePaintedObjects.clear()
-
     def SetupDocksAndPanels(self):
         """
         Sets up the dock widgets and panels
@@ -1083,32 +1068,6 @@ class MiyamotoWindow(QtWidgets.QMainWindow):
         act.setShortcut(QtGui.QKeySequence('Ctrl+M'))
         act.setIcon(GetIcon('overview'))
         act.setStatusTip(globals.trans.string('MenuItems', 95))
-        self.vmenu.addAction(act)
-		
-        # quick paint configuration
-        #dock = QtWidgets.QDockWidget(globals.trans.string('MenuItems', 136), self)
-        #dock.setFeatures(
-        #    QtWidgets.QDockWidget.DockWidgetMovable | QtWidgets.QDockWidget.DockWidgetFloatable | QtWidgets.QDockWidget.DockWidgetClosable)
-        # dock.setAllowedAreas(Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea)
-        #dock.setObjectName('quickpaint')  # needed for the state to save/restore correctly #
-
-        #self.quickPaint = QuickPaintConfigWidget()
-        #self.quickPaint.moveIt.connect(self.HandleOverviewClick)
-        #self.quickPaintDock = dock
-        #dock.setWidget(self.quickPaint)
-
-        #self.addDockWidget(Qt.RightDockWidgetArea, dock)
-        #dock.setVisible(True)
-
-        #self.QPPaintShortcut = QtWidgets.QShortcut(QtGui.QKeySequence("Alt+P"), self)
-        #self.QPPaintShortcut.activated.connect(self.__QPPaintSet)
-        #self.QPEraseShortcut = QtWidgets.QShortcut(QtGui.QKeySequence("Alt+Shift+P"), self)
-        #self.QPEraseShortcut.activated.connect(self.__QPEraseSet)
-
-        act = dock.toggleViewAction()
-        act.setShortcut(QtGui.QKeySequence('Alt+Q'))
-        act.setIcon(GetIcon('quickpaint'))
-        act.setStatusTip(globals.trans.string('MenuItems', 137))
         self.vmenu.addAction(act)
 
         # create the sprite editor panel
@@ -3825,12 +3784,6 @@ class MiyamotoWindow(QtWidgets.QMainWindow):
             sprite.UpdateDynamicSizing()
             sprite.ImageObj.positionChanged()
         self.scene.update()
-
-        # Set up and reset the Quick Paint Tool
-        if hasattr(self, 'quickPaint'):
-            self.quickPaint.reset()  # Reset the QP widget.
-        QuickPaintOperations.object_optimize_database = []
-        QuickPaintOperations.object_search_database = {}
 
         # Set the level overview settings
         self.levelOverview.maxX = 100
