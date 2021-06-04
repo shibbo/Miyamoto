@@ -4741,9 +4741,9 @@ class LevelViewWidget(QtWidgets.QGraphicsView):
         if pos.y() < 0: pos.setY(0)
         self.PositionHover.emit(int(pos.x()), int(pos.y()))
 
-        if globals.mainWindow.quickPaint and globals.mainWindow.quickPaint.QuickPaintMode:
-            self.mouseGridPosition = ((pos.x()/globals.TileWidth), (pos.y()/globals.TileWidth))
-            inv = True
+        #if globals.mainWindow.quickPaint and globals.mainWindow.quickPaint.QuickPaintMode:
+        #    self.mouseGridPosition = ((pos.x()/globals.TileWidth), (pos.y()/globals.TileWidth))
+        #    inv = True
 
         if event.buttons() == Qt.MidButton:
             offset = self.__prevMousePos - event.pos()

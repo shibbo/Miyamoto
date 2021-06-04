@@ -1086,24 +1086,24 @@ class MiyamotoWindow(QtWidgets.QMainWindow):
         self.vmenu.addAction(act)
 		
         # quick paint configuration
-        dock = QtWidgets.QDockWidget(globals.trans.string('MenuItems', 136), self)
-        dock.setFeatures(
-            QtWidgets.QDockWidget.DockWidgetMovable | QtWidgets.QDockWidget.DockWidgetFloatable | QtWidgets.QDockWidget.DockWidgetClosable)
+        #dock = QtWidgets.QDockWidget(globals.trans.string('MenuItems', 136), self)
+        #dock.setFeatures(
+        #    QtWidgets.QDockWidget.DockWidgetMovable | QtWidgets.QDockWidget.DockWidgetFloatable | QtWidgets.QDockWidget.DockWidgetClosable)
         # dock.setAllowedAreas(Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea)
-        dock.setObjectName('quickpaint')  # needed for the state to save/restore correctly #
+        #dock.setObjectName('quickpaint')  # needed for the state to save/restore correctly #
 
-        self.quickPaint = QuickPaintConfigWidget()
+        #self.quickPaint = QuickPaintConfigWidget()
         #self.quickPaint.moveIt.connect(self.HandleOverviewClick)
-        self.quickPaintDock = dock
-        dock.setWidget(self.quickPaint)
+        #self.quickPaintDock = dock
+        #dock.setWidget(self.quickPaint)
 
-        self.addDockWidget(Qt.RightDockWidgetArea, dock)
-        dock.setVisible(True)
+        #self.addDockWidget(Qt.RightDockWidgetArea, dock)
+        #dock.setVisible(True)
 
-        self.QPPaintShortcut = QtWidgets.QShortcut(QtGui.QKeySequence("Alt+P"), self)
-        self.QPPaintShortcut.activated.connect(self.__QPPaintSet)
-        self.QPEraseShortcut = QtWidgets.QShortcut(QtGui.QKeySequence("Alt+Shift+P"), self)
-        self.QPEraseShortcut.activated.connect(self.__QPEraseSet)
+        #self.QPPaintShortcut = QtWidgets.QShortcut(QtGui.QKeySequence("Alt+P"), self)
+        #self.QPPaintShortcut.activated.connect(self.__QPPaintSet)
+        #self.QPEraseShortcut = QtWidgets.QShortcut(QtGui.QKeySequence("Alt+Shift+P"), self)
+        #self.QPEraseShortcut.activated.connect(self.__QPEraseSet)
 
         act = dock.toggleViewAction()
         act.setShortcut(QtGui.QKeySequence('Alt+Q'))
