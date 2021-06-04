@@ -44,6 +44,7 @@ from collections import Counter
 import json
 import os
 import platform
+import requests
 import struct
 import time
 import traceback
@@ -5495,6 +5496,19 @@ def main():
         from shutil import copy2
         copy2('settings.ini', 'settings.ini.bak')
         del copy2
+        
+    # spritedata xml check
+    print("Updating spritedata.xml...")
+
+    try:
+        response = requests.get("http://shibboleet.us.to/nsmbu/spritexml.php")
+        
+        with open("miyamotodata/spritedata.xml", "wb") as f:
+            f.write(response.content)
+            
+        print("Updated spritedata.")
+    except:
+        print("Newest spritedata.xml could not be downloaded.")
 
     # Load the settings
     globals.settings = QtCore.QSettings('settings.ini', QtCore.QSettings.IniFormat)
